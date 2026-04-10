@@ -1,82 +1,81 @@
-window#waybar {
-    font-family: monospace;
-    font-size: 12px;
-    background-color: rgba(8, 8, 8, 0.93);
-    color: #cccccc;
-    border-bottom: 1px solid #222222;
-}
+{
+    "layer": "top",
+    "position": "top",
+    "height": 30,
+    "spacing": 8,
+    "modules-left": ["sway/workspaces", "sway/mode"],
+    "modules-center": ["clock"],
+    "modules-right": [
+        "custom/gpu-temp",
+        "separator",
+        "temperature",
+        "separator",
+        "memory",
+        "separator",
+        "backlight",
+        "separator",
+        "pulseaudio",
+        "separator",
+        "battery",
+        "tray"
+    ],
 
-button {
-    border: none;
-    border-radius: 0;
-    box-shadow: none;
-    text-shadow: none;
-    background: transparent;
-    padding: 0;
-    margin: 0;
+    "sway/workspaces": {
+        "disable-scroll": true,
+        "format": "{name}"
+    },
+    "clock": {
+        "timezone": "Asia/Tashkent",
+        "format": "{:%H:%M  |  %d.%m.%Y}",
+        "tooltip": false
+    },
+    "custom/gpu-temp": {
+        "exec": "nvidia-smi --query-gpu=temperature.gpu --format=csv,noheader,nounits 2>/dev/null | awk '{print \"GPU \"$1\"°C\"}'",
+        "interval": 5,
+        "format": "{}",
+        "tooltip": false
+    },
+    "temperature": {
+        "hwmon-path": "/sys/class/hwmon/hwmon1/temp1_input",
+        "critical-threshold": 85,
+        "format": "CPU {temperatureC}°C",
+        "tooltip": false
+    },
+    "memory": {
+        "interval": 5,
+        "format": "RAM {used:0.1f}G",
+        "tooltip": false
+    },
+    "backlight": {
+        "device": "amdgpu_bl1",
+        "format": "BRT {percent}%",
+        "on-scroll-up": "light -A 5",
+        "on-scroll-down": "light -U 5",
+        "tooltip": false
+    },
+    "pulseaudio": {
+        "format": "VOL {volume}%",
+        "format-muted": "MUTE",
+        "on-scroll-up": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+",
+        "on-scroll-down": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-",
+        "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+        "scroll-step": 5,
+        "tooltip": false
+    },
+    "battery": {
+        "states": {
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "BAT {capacity}%",
+        "format-charging": "CHG {capacity}%",
+        "format-plugged": "AC {capacity}%",
+        "tooltip": false
+    },
+    "separator": {
+        "format": "│"
+    },
+    "tray": {
+        "spacing": 8
+    }
 }
-
-#workspaces {
-    margin: 0 4px;
-}
-
-#workspaces button {
-    padding: 0 10px;
-    color: #555555;
-    border-bottom: 2px solid transparent;
-    transition: all 0.15s ease;
-}
-
-#workspaces button.focused,
-#workspaces button.active {
-    color: #ffffff;
-    border-bottom: 2px solid #ffffff;
-}
-
-#workspaces button:hover {
-    background: rgba(255, 255, 255, 0.06);
-    color: #aaaaaa;
-}
-
-#mode {
-    padding: 0 8px;
-    color: #ffffff;
-    background: #1f1f1f;
-    font-style: italic;
-}
-
-#clock {
-    padding: 0 20px;
-    color: #ffffff;
-    font-size: 13px;
-    font-weight: bold;
-    letter-spacing: 0.03em;
-}
-
-#memory, #temperature, #custom-gpu-temp, #battery, #backlight, #pulseaudio, #custom-browser, #tray {
-    padding: 0 8px;
-    color: #999999;
-    font-family: monospace;
-    font-size: 12px;
-}
-
-#separator {
-    color: #2a2a2a;
-    padding: 0;
-    font-size: 11px;
-}
-
-#memory { color: #bbbbbb; }
-#temperature { color: #aaaaaa; }
-#temperature.critical { color: #ffffff; font-weight: bold; }
-#custom-gpu-temp { color: #aaaaaa; }
-#battery { color: #999999; }
-#battery.charging, #battery.plugged { color: #cccccc; }
-#battery.warning:not(.charging) { color: #aaaaaa; }
-#battery.critical:not(.charging) { color: #ffffff; }
-#backlight { color: #888888; }
-#pulseaudio { color: #999999; }
-#pulseaudio.muted { color: #444444; }
-#custom-browser { padding: 0 10px 0 6px; color: #666666; font-size: 14px; }
-#custom-browser:hover { color: #dddddd; }
-#tray { padding: 0 6px; }
