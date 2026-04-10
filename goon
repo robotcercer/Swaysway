@@ -1,0 +1,169 @@
+# ═══════════════════════════════════════════════════════════
+#  Sway — Minimal Config  | [span_0](start_span)HP Victus 15 / Gentoo / OpenRC[span_0](end_span)
+# ═══════════════════════════════════════════════════════════
+
+# ── Variables ────────────────────────────────────────────────
+[span_1](start_span)set $mod    Mod4[span_1](end_span)
+[span_2](start_span)set $term   foot[span_2](end_span)
+[span_3](start_span)set $menu   wofi --show drun --no-actions --prompt "›"[span_3](end_span)
+[span_4](start_span)set $browser librewolf[span_4](end_span)
+
+# ── Font ─────────────────────────────────────────────────────
+[span_5](start_span)font pango:monospace 10[span_5](end_span)
+
+# ── Output ───────────────────────────────────────────────────
+[span_6](start_span)output * bg #000000 solid_color[span_6](end_span)
+
+# ── Input: Touchpad ──────────────────────────────────────────
+[span_7](start_span)input "type:touchpad" {[span_7](end_span)
+    [span_8](start_span)tap                 enabled[span_8](end_span)
+    [span_9](start_span)tap_button_map      lrm[span_9](end_span)
+    [span_10](start_span)natural_scroll      enabled[span_10](end_span)
+    [span_11](start_span)dwt                 enabled          # disable while typing[span_11](end_span)
+    [span_12](start_span)scroll_method       two_finger[span_12](end_span)
+    [span_13](start_span)accel_profile       adaptive[span_13](end_span)
+    [span_14](start_span)pointer_accel       0.2[span_14](end_span)
+    [span_15](start_span)middle_emulation    enabled[span_15](end_span)
+    [span_16](start_span)click_method        button_areas[span_16](end_span)
+[span_17](start_span)}
+
+input "type:keyboard" {[span_17](end_span)
+    [span_18](start_span)xkb_layout  us,ru[span_18](end_span)
+    [span_19](start_span)xkb_options grp:alt_shift_toggle[span_19](end_span)
+    [span_20](start_span)repeat_delay  300[span_20](end_span)
+    [span_21](start_span)repeat_rate   40[span_21](end_span)
+[span_22](start_span)}
+
+# ── Appearance ───────────────────────────────────────────────
+gaps inner 12[span_22](end_span)
+[span_23](start_span)gaps outer 0[span_23](end_span)
+[span_24](start_span)smart_gaps on[span_24](end_span)
+
+[span_25](start_span)default_border          none[span_25](end_span)
+[span_26](start_span)default_floating_border none[span_26](end_span)
+[span_27](start_span)hide_edge_borders       both[span_27](end_span)
+
+# [span_28](start_span)Window colours:  border  bg      text    indicator  child_border[span_28](end_span)
+[span_29](start_span)client.focused          #ffffff #1c1c1c #ffffff   #ffffff  #555555[span_29](end_span)
+[span_30](start_span)client.unfocused        #1c1c1c #111111 #666666   #1c1c1c  #1c1c1c[span_30](end_span)
+[span_31](start_span)client.focused_inactive #2a2a2a #161616 #888888   #2a2a2a  #2a2a2a[span_31](end_span)
+[span_32](start_span)client.urgent           #cc3333 #cc3333 #ffffff   #cc3333  #cc3333[span_32](end_span)
+
+# ── Mouse: drag to move/resize any window ────────────────────
+[span_33](start_span)floating_modifier $mod normal[span_33](end_span)
+
+# ── Key bindings ─────────────────────────────────────────────
+# [span_34](start_span)Applications[span_34](end_span)
+[span_35](start_span)bindsym $mod+Return        exec $term[span_35](end_span)
+[span_36](start_span)bindsym $mod+d             exec $menu[span_36](end_span)
+[span_37](start_span)bindsym $mod+Shift+b       exec $browser[span_37](end_span)
+[span_38](start_span)bindsym $mod+Shift+q       kill[span_38](end_span)
+[span_39](start_span)bindsym $mod+Shift+r       reload[span_39](end_span)
+bindsym $mod+Shift+e       exec swaynag -t warning -m "Выйти из Sway?" \
+                                -[span_40](start_span)b "Да" "swaymsg exit"[span_40](end_span)
+
+# [span_41](start_span)Volume  (auto-refresh waybar via SIGRTMIN+1)[span_41](end_span)
+bindsym XF86AudioRaiseVolume  exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+ \
+                                    [span_42](start_span)&& pkill -RTMIN+1 waybar[span_42](end_span)
+bindsym XF86AudioLowerVolume  exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%- \
+                                    [span_43](start_span)&& pkill -RTMIN+1 waybar[span_43](end_span)
+bindsym XF86AudioMute         exec wpctl set-mute   @DEFAULT_AUDIO_SINK@ toggle \
+                                    [span_44](start_span)&& pkill -RTMIN+1 waybar[span_44](end_span)
+[span_45](start_span)bindsym XF86AudioMicMute      exec wpctl set-mute   @DEFAULT_SOURCE@ toggle[span_45](end_span)
+
+# [span_46](start_span)Brightness  (auto-refresh waybar via SIGRTMIN+2)[span_46](end_span)
+bindsym XF86MonBrightnessUp   exec light -A 5 \
+                                    [span_47](start_span)&& pkill -RTMIN+2 waybar[span_47](end_span)
+bindsym XF86MonBrightnessDown exec light -U 5 \
+                                    [span_48](start_span)&& pkill -RTMIN+2 waybar[span_48](end_span)
+
+# [span_49](start_span)Screenshot[span_49](end_span)
+[span_50](start_span)bindsym Print                 exec grim ~/Pictures/scr-$(date +%F_%T).png[span_50](end_span)
+[span_51](start_span)bindsym $mod+Print            exec grim -g "$(slurp)" ~/Pictures/scr-$(date +%F_%T).png[span_51](end_span)
+
+# [span_52](start_span)Focus[span_52](end_span)
+[span_53](start_span)bindsym $mod+h        focus left[span_53](end_span)
+[span_54](start_span)bindsym $mod+j        focus down[span_54](end_span)
+[span_55](start_span)bindsym $mod+k        focus up[span_55](end_span)
+[span_56](start_span)bindsym $mod+l        focus right[span_56](end_span)
+[span_57](start_span)bindsym $mod+Left     focus left[span_57](end_span)
+[span_58](start_span)bindsym $mod+Down     focus down[span_58](end_span)
+[span_59](start_span)bindsym $mod+Up       focus up[span_59](end_span)
+[span_60](start_span)bindsym $mod+Right    focus right[span_60](end_span)
+
+# [span_61](start_span)Move window[span_61](end_span)
+[span_62](start_span)bindsym $mod+Shift+h     move left[span_62](end_span)
+[span_63](start_span)bindsym $mod+Shift+j     move down[span_63](end_span)
+[span_64](start_span)bindsym $mod+Shift+k     move up[span_64](end_span)
+[span_65](start_span)bindsym $mod+Shift+l     move right[span_65](end_span)
+
+# [span_66](start_span)Split[span_66](end_span)
+[span_67](start_span)bindsym $mod+b  splith[span_67](end_span)
+[span_68](start_span)bindsym $mod+v  splitv[span_68](end_span)
+
+# [span_69](start_span)Layout[span_69](end_span)
+[span_70](start_span)bindsym $mod+s         layout stacking[span_70](end_span)
+[span_71](start_span)bindsym $mod+w         layout tabbed[span_71](end_span)
+[span_72](start_span)bindsym $mod+e         layout toggle split[span_72](end_span)
+[span_73](start_span)bindsym $mod+f         fullscreen[span_73](end_span)
+[span_74](start_span)bindsym $mod+Shift+f   floating toggle[span_74](end_span)
+[span_75](start_span)bindsym $mod+space     focus mode_toggle[span_75](end_span)
+[span_76](start_span)bindsym $mod+a         focus parent[span_76](end_span)
+
+# [span_77](start_span)Workspaces[span_77](end_span)
+[span_78](start_span)bindsym $mod+1  workspace number 1[span_78](end_span)
+[span_79](start_span)bindsym $mod+2  workspace number 2[span_79](end_span)
+[span_80](start_span)bindsym $mod+3  workspace number 3[span_80](end_span)
+[span_81](start_span)bindsym $mod+4  workspace number 4[span_81](end_span)
+[span_82](start_span)bindsym $mod+5  workspace number 5[span_82](end_span)
+[span_83](start_span)bindsym $mod+Shift+1  move container to workspace number 1[span_83](end_span)
+[span_84](start_span)bindsym $mod+Shift+2  move container to workspace number 2[span_84](end_span)
+[span_85](start_span)bindsym $mod+Shift+3  move container to workspace number 3[span_85](end_span)
+[span_86](start_span)bindsym $mod+Shift+4  move container to workspace number 4[span_86](end_span)
+[span_87](start_span)bindsym $mod+Shift+5  move container to workspace number 5[span_87](end_span)
+
+# [span_88](start_span)Resize mode[span_88](end_span)
+[span_89](start_span)mode "resize" {[span_89](end_span)
+    [span_90](start_span)bindsym h  resize shrink width  20px[span_90](end_span)
+    [span_91](start_span)bindsym l  resize grow   width  20px[span_91](end_span)
+    [span_92](start_span)bindsym k  resize shrink height 20px[span_92](end_span)
+    [span_93](start_span)bindsym j  resize grow   height 20px[span_93](end_span)
+    [span_94](start_span)bindsym Left  resize shrink width  20px[span_94](end_span)
+    [span_95](start_span)bindsym Right resize grow   width  20px[span_95](end_span)
+    [span_96](start_span)bindsym Up    resize shrink height 20px[span_96](end_span)
+    [span_97](start_span)bindsym Down  resize grow   height 20px[span_97](end_span)
+    [span_98](start_span)bindsym Return mode "default"[span_98](end_span)
+    [span_99](start_span)bindsym Escape mode "default"[span_99](end_span)
+[span_100](start_span)}
+bindsym $mod+r mode "resize"[span_100](end_span)
+
+# [span_101](start_span)── Autostart ────────────────────────────────────────────────[span_101](end_span)
+# Sound
+exec gentoo-pipewire-launcher
+
+# [span_102](start_span)Bar[span_102](end_span)
+[span_103](start_span)exec_always --no-startup-id waybar[span_103](end_span)
+
+# [span_104](start_span)Notifications[span_104](end_span)
+[span_105](start_span)exec_always --no-startup-id mako[span_105](end_span)
+
+# [span_106](start_span)TLP / power-profiles-daemon: energy-saving profile[span_106](end_span)
+exec --no-startup-id powerprofilesctl set power-saver 2>/dev/null \
+     [span_107](start_span)|| tlp bat 2>/dev/null || true[span_107](end_span)
+
+# [span_108](start_span)NVIDIA: сбросить контроль вентилятора на автоматический[span_108](end_span)
+[span_109](start_span)exec --no-startup-id nvidia-settings -a "[gpu:0]/GPUFanControlState=0" 2>/dev/null || true[span_109](end_span)
+
+# [span_110](start_span)── Idle & Lock ──────────────────────────────────────────────[span_110](end_span)
+exec --no-startup-id swayidle -w \
+    timeout 300  'swaylock -f -c 000000 --font monospace' \
+    timeout 600  'swaymsg "output * dpms off"' \
+    resume       'swaymsg "output * dpms on"' \
+    [span_111](start_span)before-sleep 'swaylock -f -c 000000 --font monospace'[span_111](end_span)
+
+# [span_112](start_span)── Window Rules ─────────────────────────────────────────────[span_112](end_span)
+[span_113](start_span)for_window [window_role="dialog"]          floating enable[span_113](end_span)
+[span_114](start_span)for_window [window_role="pop-up"]          floating enable[span_114](end_span)
+[span_115](start_span)for_window [app_id="pavucontrol"]          floating enable, resize set 580 380[span_115](end_span)
+[span_116](start_span)for_window [app_id="nm-connection-editor"] floating enable[span_116](end_span)
+[span_117](start_span)for_window [class="Xdg-open"]             floating enable[span_117](end_span)
