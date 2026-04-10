@@ -1,0 +1,162 @@
+/* ═══════════════════════════════════════════════
+   Waybar — B/W Minimal Theme
+   ═══════════════════════════════════════════════ */
+
+* {
+    font-family: "monospace"; [span_134](start_span)/*[span_134](end_span) */
+    font-size: 12px; [span_135](start_span)/*[span_135](end_span) */
+    border: none; [span_136](start_span)/*[span_136](end_span) */
+    border-radius: 0; [span_137](start_span)/*[span_137](end_span) */
+    min-height: 0; [span_138](start_span)/*[span_138](end_span) */
+    margin: 0; [span_139](start_span)/*[span_139](end_span) */
+    padding: 0; [span_140](start_span)/*[span_140](end_span) */
+[span_141](start_span)} /*[span_141](end_span) */
+
+[span_142](start_span)window#waybar { /*[span_142](end_span) */
+    background-color: rgba(8, 8, 8, 0.93); [span_143](start_span)/*[span_143](end_span) */
+    color: #cccccc; [span_144](start_span)/*[span_144](end_span) */
+    border-bottom: 1px solid #222222; [span_145](start_span)/*[span_145](end_span) */
+    transition: none; [span_146](start_span)/*[span_146](end_span) */
+[span_147](start_span)} /*[span_147](end_span) */
+
+[span_148](start_span)/* ── Workspaces ───────────────────────── */ /*[span_148](end_span) */
+[span_149](start_span)#workspaces { /*[span_149](end_span) */
+    margin: 0 4px; [span_150](start_span)/*[span_150](end_span) */
+[span_151](start_span)} /*[span_151](end_span) */
+
+[span_152](start_span)#workspaces button { /*[span_152](end_span) */
+    padding: 0 10px; [span_153](start_span)/*[span_153](end_span) */
+    background: transparent; [span_154](start_span)/*[span_154](end_span) */
+    color: #555555; [span_155](start_span)/*[span_155](end_span) */
+    border-bottom: 2px solid transparent; [span_156](start_span)/*[span_156](end_span) */
+    transition: all 0.15s ease; [span_157](start_span)/*[span_157](end_span) */
+[span_158](start_span)} /*[span_158](end_span) */
+
+[span_159](start_span)#workspaces button.focused, /*[span_159](end_span) */
+[span_160](start_span)#workspaces button.active { /*[span_160](end_span) */
+    color: #ffffff; [span_161](start_span)/*[span_161](end_span) */
+    border-bottom: 2px solid #ffffff; [span_162](start_span)/*[span_162](end_span) */
+[span_163](start_span)} /*[span_163](end_span) */
+
+[span_164](start_span)#workspaces button:hover { /*[span_164](end_span) */
+    background: rgba(255, 255, 255, 0.06); [span_165](start_span)/*[span_165](end_span) */
+    color: #aaaaaa; [span_166](start_span)/*[span_166](end_span) */
+[span_167](start_span)} /*[span_167](end_span) */
+
+[span_168](start_span)#mode { /*[span_168](end_span) */
+    padding: 0 8px; [span_169](start_span)/*[span_169](end_span) */
+    color: #ffffff; [span_170](start_span)/*[span_170](end_span) */
+    background: #1f1f1f; [span_171](start_span)/*[span_171](end_span) */
+    font-style: italic; [span_172](start_span)/*[span_172](end_span) */
+[span_173](start_span)} /*[span_173](end_span) */
+
+[span_174](start_span)/* ── Clock (center) ───────────────────── */ /*[span_174](end_span) */
+[span_175](start_span)#clock { /*[span_175](end_span) */
+    padding: 0 20px; [span_176](start_span)/*[span_176](end_span) */
+    color: #ffffff; [span_177](start_span)/*[span_177](end_span) */
+    font-size: 13px; [span_178](start_span)/*[span_178](end_span) */
+    font-weight: bold; [span_179](start_span)/*[span_179](end_span) */
+    letter-spacing: 0.03em; [span_180](start_span)/*[span_180](end_span) */
+[span_181](start_span)} /*[span_181](end_span) */
+
+[span_182](start_span)/* ── Right modules — common ───────────── */ /*[span_182](end_span) */
+[span_183](start_span)#memory, /*[span_183](end_span) */
+[span_184](start_span)#temperature, /*[span_184](end_span) */
+[span_185](start_span)#custom-gpu-temp, /*[span_185](end_span) */
+[span_186](start_span)#battery, /*[span_186](end_span) */
+[span_187](start_span)#backlight, /*[span_187](end_span) */
+[span_188](start_span)#pulseaudio, /*[span_188](end_span) */
+[span_189](start_span)#custom-browser, /*[span_189](end_span) */
+[span_190](start_span)#tray { /*[span_190](end_span) */
+    padding: 0 8px; [span_191](start_span)/*[span_191](end_span) */
+    color: #999999; [span_192](start_span)/*[span_192](end_span) */
+[span_193](start_span)} /*[span_193](end_span) */
+
+[span_194](start_span)/* ── Separator ────────────────────────── */ /*[span_194](end_span) */
+[span_195](start_span)#separator { /*[span_195](end_span) */
+    color: #2a2a2a; [span_196](start_span)/*[span_196](end_span) */
+    padding: 0; [span_197](start_span)/*[span_197](end_span) */
+    font-size: 11px; [span_198](start_span)/*[span_198](end_span) */
+[span_199](start_span)} /*[span_199](end_span) */
+
+[span_200](start_span)/* ── Individual modules ───────────────── */ /*[span_200](end_span) */
+[span_201](start_span)#memory { /*[span_201](end_span) */
+    color: #bbbbbb; [span_202](start_span)/*[span_202](end_span) */
+[span_203](start_span)} /*[span_203](end_span) */
+
+[span_204](start_span)#temperature { /*[span_204](end_span) */
+    color: #aaaaaa; [span_205](start_span)/*[span_205](end_span) */
+[span_206](start_span)} /*[span_206](end_span) */
+
+[span_207](start_span)#temperature.critical { /*[span_207](end_span) */
+    color: #ffffff; [span_208](start_span)/*[span_208](end_span) */
+    font-weight: bold; [span_209](start_span)/*[span_209](end_span) */
+    animation: pulse 1s ease-in-out infinite; [span_210](start_span)/*[span_210](end_span) */
+[span_211](start_span)} /*[span_211](end_span) */
+
+[span_212](start_span)#custom-gpu-temp { /*[span_212](end_span) */
+    color: #aaaaaa; [span_213](start_span)/*[span_213](end_span) */
+[span_214](start_span)} /*[span_214](end_span) */
+
+[span_215](start_span)#battery { /*[span_215](end_span) */
+    color: #999999; [span_216](start_span)/*[span_216](end_span) */
+[span_217](start_span)} /*[span_217](end_span) */
+
+[span_218](start_span)#battery.charging, /*[span_218](end_span) */
+[span_219](start_span)#battery.plugged { /*[span_219](end_span) */
+    color: #cccccc; [span_220](start_span)/*[span_220](end_span) */
+[span_221](start_span)} /*[span_221](end_span) */
+
+[span_222](start_span)#battery.warning:not(.charging) { /*[span_222](end_span) */
+    color: #aaaaaa; [span_223](start_span)/*[span_223](end_span) */
+[span_224](start_span)} /*[span_224](end_span) */
+
+[span_225](start_span)#battery.critical:not(.charging) { /*[span_225](end_span) */
+    color: #ffffff; [span_226](start_span)/*[span_226](end_span) */
+    animation: blink 0.8s step-end infinite; [span_227](start_span)/*[span_227](end_span) */
+[span_228](start_span)} /*[span_228](end_span) */
+
+[span_229](start_span)#backlight { /*[span_229](end_span) */
+    color: #888888; [span_230](start_span)/*[span_230](end_span) */
+[span_231](start_span)} /*[span_231](end_span) */
+
+[span_232](start_span)#pulseaudio { /*[span_232](end_span) */
+    color: #999999; [span_233](start_span)/*[span_233](end_span) */
+[span_234](start_span)} /*[span_234](end_span) */
+
+[span_235](start_span)#pulseaudio.muted { /*[span_235](end_span) */
+    color: #444444; [span_236](start_span)/*[span_236](end_span) */
+[span_237](start_span)} /*[span_237](end_span) */
+
+[span_238](start_span)#custom-browser { /*[span_238](end_span) */
+    padding: 0 10px 0 6px; [span_239](start_span)/*[span_239](end_span) */
+    color: #666666; [span_240](start_span)/*[span_240](end_span) */
+    font-size: 14px; [span_241](start_span)/*[span_241](end_span) */
+    transition: color 0.15s; [span_242](start_span)/*[span_242](end_span) */
+[span_243](start_span)} /*[span_243](end_span) */
+
+[span_244](start_span)#custom-browser:hover { /*[span_244](end_span) */
+    color: #dddddd; [span_245](start_span)/*[span_245](end_span) */
+[span_246](start_span)} /*[span_246](end_span) */
+
+[span_247](start_span)#tray { /*[span_247](end_span) */
+    padding: 0 6px; [span_248](start_span)/*[span_248](end_span) */
+[span_249](start_span)} /*[span_249](end_span) */
+
+[span_250](start_span)#tray > .passive { /*[span_250](end_span) */
+    -gtk-icon-effect: dim; [span_251](start_span)/*[span_251](end_span) */
+[span_252](start_span)} /*[span_252](end_span) */
+
+[span_253](start_span)/* ── Animations ───────────────────────── */ /*[span_253](end_span) */
+[span_254](start_span)@keyframes blink { /*[span_254](end_span) */
+    to { color: #333333; [span_255](start_span)/*[span_255](end_span) */
+    [span_256](start_span)} /*[span_256](end_span) */
+[span_257](start_span)} /*[span_257](end_span) */
+
+[span_258](start_span)@keyframes pulse { /*[span_258](end_span) */
+    0%   { color: #ffffff; [span_259](start_span)/*[span_259](end_span) */
+    [span_260](start_span)} /*[span_260](end_span) */
+    50%  { color: #888888; [span_261](start_span)} /*[span_261](end_span) */
+    100% { color: #ffffff; [span_262](start_span)/*[span_262](end_span) */
+    [span_263](start_span)} /*[span_263](end_span) */
+[span_264](start_span)} /*[span_264](end_span) */
