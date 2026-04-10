@@ -1,17 +1,19 @@
-* {
+window#waybar {
     font-family: monospace;
     font-size: 12px;
-    border: none;
-    border-radius: 0;
-    min-height: 0;
-    margin: 0;
-    padding: 0;
-}
-
-window#waybar {
     background-color: rgba(8, 8, 8, 0.93);
     color: #cccccc;
     border-bottom: 1px solid #222222;
+}
+
+button {
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    text-shadow: none;
+    background: transparent;
+    padding: 0;
+    margin: 0;
 }
 
 #workspaces {
@@ -20,7 +22,6 @@ window#waybar {
 
 #workspaces button {
     padding: 0 10px;
-    background: transparent;
     color: #555555;
     border-bottom: 2px solid transparent;
     transition: all 0.15s ease;
@@ -55,6 +56,8 @@ window#waybar {
 #memory, #temperature, #custom-gpu-temp, #battery, #backlight, #pulseaudio, #custom-browser, #tray {
     padding: 0 8px;
     color: #999999;
+    font-family: monospace;
+    font-size: 12px;
 }
 
 #separator {
