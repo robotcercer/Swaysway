@@ -1,142 +1,146 @@
-# ═══════════════════════════════════════════════════════════
-#  Sway — Full Power Config | Flat & Safe Version
-# ═══════════════════════════════════════════════════════════
+{
+    [span_2](start_span)"layer": "top", //[span_2](end_span)
+    [span_3](start_span)"position": "top", //[span_3](end_span)
+    [span_4](start_span)"height": 30, //[span_4](end_span)
+    [span_5](start_span)"spacing": 2, //[span_5](end_span)
 
-# ── Variables ──
-set $mod    Mod4
-set $term   foot
-set $menu   wofi --show drun --no-actions --prompt "›"
-set $browser librewolf
+    [span_6](start_span)"modules-left":   ["sway/workspaces", "sway/mode"], //[span_6](end_span)
+    [span_7](start_span)"modules-center": ["clock"], //[span_7](end_span)
+    [span_8](start_span)"modules-right":  [ //[span_8](end_span)
+        [span_9](start_span)"custom/browser", //[span_9](end_span)
+        [span_10](start_span)"separator", //[span_10](end_span)
+        [span_11](start_span)"custom/gpu-temp", //[span_11](end_span)
+        [span_12](start_span)"temperature", //[span_12](end_span)
+        [span_13](start_span)"separator", //[span_13](end_span)
+        [span_14](start_span)"memory", //[span_14](end_span)
+        [span_15](start_span)"separator", //[span_15](end_span)
+        [span_16](start_span)"battery", //[span_16](end_span)
+        [span_17](start_span)"separator", //[span_17](end_span)
+        [span_18](start_span)"backlight", //[span_18](end_span)
+        [span_19](start_span)"separator", //[span_19](end_span)
+        [span_20](start_span)"pulseaudio", //[span_20](end_span)
+        [span_21](start_span)"tray" //[span_21](end_span)
+    ],
 
-# ── Font & Output ──
-font pango:monospace 10
-output * bg #000000 solid_color
+    [span_22](start_span)// ── Workspaces ────────────────────────────────────────── //[span_22](end_span)
+    [span_23](start_span)"sway/workspaces": { //[span_23](end_span)
+        [span_24](start_span)"disable-scroll": true, //[span_24](end_span)
+        [span_25](start_span)"all-outputs": false, //[span_25](end_span)
+        [span_26](start_span)"format": "{name}" //[span_26](end_span)
+    [span_27](start_span)}, //[span_27](end_span)
 
-# ── Input: Touchpad ──
-input "type:touchpad" {
-    tap                 enabled
-    tap_button_map      lrm
-    natural_scroll      enabled
-    dwt                 enabled
-    scroll_method       two_finger
-    accel_profile       adaptive
-    pointer_accel       0.2
-    middle_emulation    enabled
-    click_method        button_areas
-}
+    [span_28](start_span)"sway/mode": { //[span_28](end_span)
+        [span_29](start_span)"format": " {}" //[span_29](end_span)
+    [span_30](start_span)}, //[span_30](end_span)
 
-# ── Input: Keyboard ──
-input "type:keyboard" {
-    xkb_layout  us,ru
-    xkb_options grp:alt_shift_toggle
-    repeat_delay  300
-    repeat_rate   40
-}
+    [span_31](start_span)// ── Clock + Calendar ──────────────────────────────────── //[span_31](end_span)
+    [span_32](start_span)"clock": { //[span_32](end_span)
+        [span_33](start_span)"timezone": "Asia/Tashkent", //[span_33](end_span)
+        [span_34](start_span)"format": "  {:%H:%M}", //[span_34](end_span)
+        [span_35](start_span)"format-alt": "  {:%d %b %Y}", //[span_35](end_span)
+        [span_36](start_span)"tooltip-format": "<tt>{calendar}</tt>", //[span_36](end_span)
+        [span_37](start_span)"calendar": { //[span_37](end_span)
+            [span_38](start_span)"mode":          "month", //[span_38](end_span)
+            [span_39](start_span)"mode-mon-col": 1, //[span_39](end_span)
+            [span_40](start_span)"on-scroll":     1, //[span_40](end_span)
+            [span_41](start_span)"on-click-right": "mode", //[span_41](end_span)
+            [span_42](start_span)"format": { //[span_42](end_span)
+                [span_43](start_span)"months":   "<span color='#ffffff'><b>{}</b></span>", //[span_43](end_span)
+                [span_44](start_span)"days":     "<span color='#aaaaaa'>{}</span>", //[span_44](end_span)
+                [span_45](start_span)"weekdays": "<span color='#666666'>{}</span>", //[span_45](end_span)
+                [span_46](start_span)"today":    "<span color='#ffffff'><b><u>{}</u></b></span>" //[span_46](end_span)
+            [span_47](start_span)} //[span_47](end_span)
+        [span_48](start_span)} //[span_48](end_span)
+    [span_49](start_span)}, //[span_49](end_span)
 
-# ── Appearance ──
-gaps inner 12
-gaps outer 0
-smart_gaps on
+    [span_50](start_span)// ── RAM Usage ─────────────────────────────────────────── //[span_50](end_span)
+    [span_51](start_span)"memory": { //[span_51](end_span)
+        [span_52](start_span)"interval": 5, //[span_52](end_span)
+        [span_53](start_span)"format": " {used:0.1f}G", //[span_53](end_span)
+        [span_54](start_span)"tooltip-format": "RAM: {used:0.1f} / {total:0.1f} GB\nFree: {avail:0.1f} GB\nSwap: {swapUsed:0.1f} GB" //[span_54](end_span)
+    [span_55](start_span)}, //[span_55](end_span)
 
-default_border          none
-default_floating_border none
-hide_edge_borders       both
+    [span_56](start_span)// ── CPU Temperature (lm-sensors) ──────────────────────── //[span_56](end_span)
+    [span_57](start_span)"temperature": { //[span_57](end_span)
+        [span_58](start_span)"hwmon-path": "/sys/class/hwmon/hwmon1/temp1_input", //[span_58](end_span)
+        [span_59](start_span)"critical-threshold": 85, //[span_59](end_span)
+        [span_60](start_span)"format": " {temperatureC}°C", //[span_60](end_span)
+        [span_61](start_span)"format-critical": " {temperatureC}°C", //[span_61](end_span)
+        [span_62](start_span)"tooltip": true //[span_62](end_span)
+        [span_63](start_span)// NOTE: Если температура не отображается, запустите: //[span_63](end_span)
+        [span_64](start_span)//   sensors-detect && sensors //[span_64](end_span)
+        // и скорректируйте hwmon-path. [span_65](start_span)Или уберите hwmon-path //[span_65](end_span)
+        // чтобы waybar выбрал первый доступный датчик. [span_66](start_span)//[span_66](end_span)
+    [span_67](start_span)}, //[span_67](end_span)
 
-client.focused          #ffffff #1c1c1c #ffffff   #ffffff  #555555
-client.unfocused        #1c1c1c #111111 #666666   #1c1c1c  #1c1c1c
-client.focused_inactive #2a2a2a #161616 #888888   #2a2a2a  #2a2a2a
-client.urgent           #cc3333 #cc3333 #ffffff   #cc3333  #cc3333
+    [span_68](start_span)// ── GPU Temperature (NVIDIA) ──────────────────────────── //[span_68](end_span)
+    [span_69](start_span)"custom/gpu-temp": { //[span_69](end_span)
+        [span_70](start_span)"exec": "nvidia-smi --query-gpu=temperature.gpu --format=csv,noheader,nounits 2>/dev/null | awk '{printf \"󰢮 %s°C\", $1}'", //[span_70](end_span)
+        [span_71](start_span)"interval": 5, //[span_71](end_span)
+        [span_72](start_span)"format": "{}", //[span_72](end_span)
+        [span_73](start_span)"tooltip-format": "NVIDIA RTX 4050", //[span_73](end_span)
+        [span_74](start_span)"return-type": "" //[span_74](end_span)
+    [span_75](start_span)}, //[span_75](end_span)
 
-floating_modifier $mod normal
+    [span_76](start_span)// ── Battery ───────────────────────────────────────────── //[span_76](end_span)
+    [span_77](start_span)"battery": { //[span_77](end_span)
+        [span_78](start_span)"states": { //[span_78](end_span)
+            [span_79](start_span)"good":     90, //[span_79](end_span)
+            [span_80](start_span)"warning":  30, //[span_80](end_span)
+            [span_81](start_span)"critical": 15 //[span_81](end_span)
+        [span_82](start_span)}, //[span_82](end_span)
+        [span_83](start_span)"format":          "{icon} {capacity}%", //[span_83](end_span)
+        [span_84](start_span)"format-charging": "󰂄 {capacity}%", //[span_84](end_span)
+        [span_85](start_span)"format-plugged":  "󰚥 {capacity}%", //[span_85](end_span)
+        [span_86](start_span)"format-icons":    ["󰂎","󰁺","󰁻","󰁼","󰁽","󰁾","󰁿","󰂀","󰂁","󰂂","󰁹"], //[span_86](end_span)
+        [span_87](start_span)"tooltip-format":  "{timeTo}\nCycles: {cycles}\nHealth: {health}%" //[span_87](end_span)
+    [span_88](start_span)}, //[span_88](end_span)
 
-# ── Key bindings (Apps) ──
-bindsym $mod+Return        exec $term
-bindsym $mod+d             exec $menu
-bindsym $mod+Shift+b       exec $browser
-bindsym $mod+Shift+q       kill
-bindsym $mod+Shift+r       reload
-bindsym $mod+Shift+e       exec swaynag -t warning -m "Выйти из Sway?" -b "Да" "swaymsg exit"
+    [span_89](start_span)// ── Backlight ─────────────────────────────────────────── //[span_89](end_span)
+    [span_90](start_span)// NOTE: Замените device на результат: ls /sys/class/backlight/ //[span_90](end_span)
+    [span_91](start_span)// Обычно на HP Victus (AMD): amdgpu_bl1 или amdgpu_bl0 //[span_91](end_span)
+    [span_92](start_span)"backlight": { //[span_92](end_span)
+        [span_93](start_span)"device": "amdgpu_bl1", //[span_93](end_span)
+        [span_94](start_span)"format": "{icon} {percent}%", //[span_94](end_span)
+        [span_95](start_span)"format-icons": ["󰃞","󰃟","󰃠"], //[span_95](end_span)
+        [span_96](start_span)"on-scroll-up":   "brightnessctl set +5%", //[span_96](end_span)
+        [span_97](start_span)"on-scroll-down": "brightnessctl set 5%-", //[span_97](end_span)
+        [span_98](start_span)"tooltip": false, //[span_98](end_span)
+        [span_99](start_span)"signal": 2 //[span_99](end_span)
+    [span_100](start_span)}, //[span_100](end_span)
 
-# ── Key bindings (Media & Brightness - with Instant Waybar Refresh) ──
-bindsym XF86AudioRaiseVolume  exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+ && pkill -RTMIN+1 waybar
-bindsym XF86AudioLowerVolume  exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%- && pkill -RTMIN+1 waybar
-bindsym XF86AudioMute         exec wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle && pkill -RTMIN+1 waybar
-bindsym XF86AudioMicMute      exec wpctl set-mute @DEFAULT_SOURCE@ toggle
+    [span_101](start_span)// ── Volume (PipeWire/PulseAudio) ──────────────────────── //[span_101](end_span)
+    [span_102](start_span)"pulseaudio": { //[span_102](end_span)
+        [span_103](start_span)"format":       "{icon} {volume}%", //[span_103](end_span)
+        [span_104](start_span)"format-muted": "󰝟", //[span_104](end_span)
+        [span_105](start_span)"format-icons": { //[span_105](end_span)
+            [span_106](start_span)"default": ["󰕿","󰖀","󰕾"], //[span_106](end_span)
+            [span_107](start_span)"headphone": ["󰋋"], //[span_107](end_span)
+            [span_108](start_span)"headset":   ["󰋎"] //[span_108](end_span)
+        [span_109](start_span)}, //[span_109](end_span)
+        [span_110](start_span)"on-click":      "pavucontrol", //[span_110](end_span)
+        [span_111](start_span)"on-scroll-up":  "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+", //[span_111](end_span)
+        [span_112](start_span)"on-scroll-down":"wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-", //[span_112](end_span)
+        [span_113](start_span)"scroll-step": 5, //[span_113](end_span)
+        [span_114](start_span)"signal": 1, //[span_114](end_span)
+        [span_115](start_span)"tooltip-format": "{desc}" //[span_115](end_span)
+    [span_116](start_span)}, //[span_116](end_span)
 
-bindsym XF86MonBrightnessUp   exec light -A 5 && pkill -RTMIN+2 waybar
-bindsym XF86MonBrightnessDown exec light -U 5 && pkill -RTMIN+2 waybar
+    [span_117](start_span)// ── Browser icon ──────────────────────────────────────── //[span_117](end_span)
+    [span_118](start_span)"custom/browser": { //[span_118](end_span)
+        [span_119](start_span)"format":    "󰖟", //[span_119](end_span)
+        [span_120](start_span)"on-click":  "firefox", //[span_120](end_span)
+        [span_121](start_span)"tooltip":   false //[span_121](end_span)
+    [span_122](start_span)}, //[span_122](end_span)
 
-# ── Key bindings (Screenshots) ──
-bindsym Print                 exec grim ~/Pictures/scr-$(date +%F_%T).png
-bindsym $mod+Print            exec grim -g "$(slurp)" ~/Pictures/scr-$(date +%F_%T).png
+    [span_123](start_span)// ── Separator ──────────────────────────────────────────── //[span_123](end_span)
+    [span_124](start_span)"separator": { //[span_124](end_span)
+        [span_125](start_span)"format": " │ " //[span_125](end_span)
+    [span_126](start_span)}, //[span_126](end_span)
 
-# ── Window Control ──
-bindsym $mod+h focus left
-bindsym $mod+j focus down
-bindsym $mod+k focus up
-bindsym $mod+l focus right
-bindsym $mod+Left focus left
-bindsym $mod+Down focus down
-bindsym $mod+Up focus up
-bindsym $mod+Right focus right
-
-bindsym $mod+Shift+h move left
-bindsym $mod+Shift+j move down
-bindsym $mod+Shift+k move up
-bindsym $mod+Shift+l move right
-
-bindsym $mod+b splith
-bindsym $mod+v splitv
-
-bindsym $mod+s layout stacking
-bindsym $mod+w layout tabbed
-bindsym $mod+e layout toggle split
-bindsym $mod+f fullscreen
-bindsym $mod+Shift+f floating toggle
-bindsym $mod+space focus mode_toggle
-bindsym $mod+a focus parent
-
-# ── Workspaces ──
-bindsym $mod+1 workspace number 1
-bindsym $mod+2 workspace number 2
-bindsym $mod+3 workspace number 3
-bindsym $mod+4 workspace number 4
-bindsym $mod+5 workspace number 5
-bindsym $mod+Shift+1 move container to workspace number 1
-bindsym $mod+Shift+2 move container to workspace number 2
-bindsym $mod+Shift+3 move container to workspace number 3
-bindsym $mod+Shift+4 move container to workspace number 4
-bindsym $mod+Shift+5 move container to workspace number 5
-
-# ── Resize mode ──
-mode "resize" {
-    bindsym h resize shrink width 20px
-    bindsym l resize grow width 20px
-    bindsym k resize shrink height 20px
-    bindsym j resize grow height 20px
-    bindsym Left resize shrink width 20px
-    bindsym Right resize grow width 20px
-    bindsym Up resize shrink height 20px
-    bindsym Down resize grow height 20px
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
-}
-bindsym $mod+r mode "resize"
-
-# ── Autostart ──
-exec gentoo-pipewire-launcher
-exec_always --no-startup-id waybar
-exec_always --no-startup-id mako
-
-exec --no-startup-id powerprofilesctl set power-saver 2>/dev/null || tlp bat 2>/dev/null || true
-exec --no-startup-id nvidia-settings -a "[gpu:0]/GPUFanControlState=0" 2>/dev/null || true
-
-# ── Idle & Lock ──
-exec --no-startup-id swayidle -w timeout 300 'swaylock -f -c 000000 --font monospace' timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' before-sleep 'swaylock -f -c 000000 --font monospace'
-
-# ── Window Rules ──
-for_window [window_role="dialog"] floating enable
-for_window [window_role="pop-up"] floating enable
-for_window [app_id="pavucontrol"] floating enable, resize set 580 380
-for_window [app_id="nm-connection-editor"] floating enable
-for_window [class="Xdg-open"] floating enable
+    [span_127](start_span)// ── System tray ───────────────────────────────────────── //[span_127](end_span)
+    [span_128](start_span)"tray": { //[span_128](end_span)
+        [span_129](start_span)"spacing": 8, //[span_129](end_span)
+        [span_130](start_span)"show-passive-items": false //[span_130](end_span)
+    [span_131](start_span)} //[span_131](end_span)
+[span_132](start_span)} //[span_132](end_span)
